@@ -109723,11 +109723,11 @@ gr(function () {
   require('./page/page-fusion');
   require('./page/page-webgl');
   require('./page/page-model');
-  require('./page/page-slideshow');
-  require('./page/page-future');
+  // require('./page/page-slideshow');
+  // require('./page/page-future');
 });
 
-},{"./page/overlay-toggle-button":41,"./page/page-compare":42,"./page/page-editor":43,"./page/page-fusion":44,"./page/page-future":45,"./page/page-model":46,"./page/page-opening":47,"./page/page-slideshow":48,"./page/page-webgl":49,"./page/page-world":50,"./page/shifty-easing":60,"grimoirejs":18}],33:[function(require,module,exports){
+},{"./page/overlay-toggle-button":41,"./page/page-compare":42,"./page/page-editor":43,"./page/page-fusion":44,"./page/page-model":45,"./page/page-opening":46,"./page/page-webgl":47,"./page/page-world":48,"./page/shifty-easing":59,"grimoirejs":18}],33:[function(require,module,exports){
 'use strict';
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -109780,7 +109780,7 @@ gr.register(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
   }, _callee, undefined);
 })));
 
-},{"./components/page-scene":26,"./components/rotate":27,"./components/slide-manager":28,"./components/slide-render-scene":29,"./components/slide-renderer":30,"./components/webcam":31,"./transition/black.sort":62,"./transition/glitch.sort":63,"./transition/noise.sort":64,"./transition/push.sort":65,"./transition/reveal.sort":66,"./transition/slide.sort":67,"grimoirejs":18,"grimoirejs-fundamental":12}],34:[function(require,module,exports){
+},{"./components/page-scene":26,"./components/rotate":27,"./components/slide-manager":28,"./components/slide-render-scene":29,"./components/slide-renderer":30,"./components/webcam":31,"./transition/black.sort":61,"./transition/glitch.sort":62,"./transition/noise.sort":63,"./transition/push.sort":64,"./transition/reveal.sort":65,"./transition/slide.sort":66,"grimoirejs":18,"grimoirejs-fundamental":12}],34:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -110178,7 +110178,7 @@ $$('.compare').on('hide', function (i) {
   $('#threejs-container .caption').text('WebGL');
 });
 
-},{"./easing":34,"./editor-settings":37,"./grimoire-main":39,"./jquery-main":40,"./sample/grimoire-color.txt":54,"./sample/jquery-div-color.txt":55,"./sample/three-color.txt":59,"./threejs-main":61,"grimoirejs":18,"jquery":20}],43:[function(require,module,exports){
+},{"./easing":34,"./editor-settings":37,"./grimoire-main":39,"./jquery-main":40,"./sample/grimoire-color.txt":52,"./sample/jquery-div-color.txt":53,"./sample/three-color.txt":58,"./threejs-main":60,"grimoirejs":18,"jquery":20}],43:[function(require,module,exports){
 'use strict';
 
 var gr = require('grimoirejs').default;
@@ -110197,7 +110197,7 @@ var editorConfig = [{
 }, {
   id: 'js-editor',
   mode: 'javascript',
-  text: 'alert("hello world");'
+  text: require('./sample/mouse.js.txt')
 }];
 var editors = require('./editor-settings')(editorConfig);
 
@@ -110231,7 +110231,7 @@ $$('.editor').on('hide', function (i) {
   editorBuild.reset();
 });
 
-},{"./editor-build":35,"./editor-runable":36,"./editor-settings":37,"./sample/change-color.goml.txt":51,"./sample/change-color.html.txt":52,"grimoirejs":18,"jquery":20}],44:[function(require,module,exports){
+},{"./editor-build":35,"./editor-runable":36,"./editor-settings":37,"./sample/change-color.goml.txt":49,"./sample/change-color.html.txt":50,"./sample/mouse.js.txt":54,"grimoirejs":18,"jquery":20}],44:[function(require,module,exports){
 'use strict';
 
 var gr = require('grimoirejs').default;
@@ -110293,46 +110293,6 @@ fp.on('hide', function () {
 'use strict';
 
 var gr = require('grimoirejs').default;
-var $$ = gr('#canvas');
-
-var _require = require('./fade'),
-    fadeIn = _require.fadeIn;
-
-var Color4 = require('grimoirejs-math').default.Color4;
-
-var tweenable = null;
-$$('.future').on('build', function (i) {
-  switch (i) {
-    case 1:
-      tweenable = fadeIn('.future .future-image1', function () {
-        tweenable = null;
-      });
-      break;
-    case 2:
-      if (tweenable) {
-        tweenable.stop();
-        tweenable = null;
-      }
-      tweenable = fadeIn('.future .future-image2', function () {
-        tweenable = null;
-      });
-      break;
-  }
-});
-
-$$('.future').on('hide', function () {
-  if (tweenable) {
-    tweenable.stop();
-    tweenable = null;
-  }
-  $$('.future .future-image1').setAttribute('color', new Color4(1, 1, 1, 0));
-  $$('.future .future-image2').setAttribute('color', new Color4(1, 1, 1, 0));
-});
-
-},{"./fade":38,"grimoirejs":18,"grimoirejs-math":15}],46:[function(require,module,exports){
-'use strict';
-
-var gr = require('grimoirejs').default;
 var $ = require('jquery');
 var $$ = gr('#canvas');
 
@@ -110375,7 +110335,7 @@ $$('.model').on('hide', function (i) {
   $('#model-grimoire-container').stop(true, false).removeAttr('style');
 });
 
-},{"./easing":34,"grimoirejs":18,"jquery":20}],47:[function(require,module,exports){
+},{"./easing":34,"grimoirejs":18,"jquery":20}],46:[function(require,module,exports){
 'use strict';
 
 var Tweenable = require('shifty');
@@ -110435,80 +110395,7 @@ op.on('hide', function () {
   $$('.opening > .camera-origin').setAttribute('rotation', 'y(0d)');
 });
 
-},{"shifty":23}],48:[function(require,module,exports){
-'use strict';
-
-var _require$default = require('grimoirejs-math').default,
-    Quaternion = _require$default.Quaternion,
-    Vector3 = _require$default.Vector3;
-
-var gr = require('grimoirejs').default;
-var Tweenable = require('shifty');
-
-var $$ = gr('#canvas');
-var scene = $$('.slideshow').single();
-var object = scene.addChildByName('object');
-object.setAttribute('rotation', 'y(90)');
-var dataNum = 9;
-var cellNum = 10;
-var radius = 12.8;
-var group = 2;
-var scale = 5;
-var padding = 1.2;
-var offsetX = Math.PI / cellNum;
-
-var label = ['pixivハッカソン', 'pixivハッカソン', '第1回ハンズオン', '第2回ハンズオン@mozilla', '第2回ハンズオン@mozilla', '第2回ハンズオン@mozilla', '第2回ハンズオン@mozilla', 'Global Game Jam', 'Global Game Jam'];
-
-var labelOffset = [0.13, 0.13, 0.01, 0.22, 0.22, 0.22, 0.22, 0.3, 0.3];
-
-for (var i = 0; i < dataNum; i++) {
-  object.addChildByName('mesh', {
-    scale: [scale * 0.4, scale * 0.3, 1],
-    class: 'img' + (i + 1),
-    texture: './src/page/pictures/img' + (i + 1) + '.jpg',
-    position: [radius * Math.cos(Math.PI / cellNum * i), (-(group - 1) / 2 + i % group) * padding, radius * Math.sin(Math.PI / cellNum * i)],
-    rotation: Quaternion.eulerXYZ(0, Math.PI + Math.PI / 2 - Math.PI / cellNum * i, 0),
-    material: 'new(unlit)'
-  });
-  $$('.slideshow .img' + (i + 1)).addChildByName('text', {
-    text: label[i],
-    font: 'Bold 30pt Noto Sans CJK JP',
-    color: '#381794',
-    size: 0.15,
-    position: [labelOffset[i], 1.2 * (Math.pow(-1, i) % group), 0]
-  });
-}
-
-var initialRotation = object.getAttribute('rotation');
-
-var rotateTweenable = null;
-
-$$('.slideshow').on('build', function (i) {
-  if (rotateTweenable) {
-    rotateTweenable.stop();
-    object.setAttribute('rotation', Quaternion.multiply(initialRotation, Quaternion.angleAxis(18 * (i - 1) * Math.PI / 180, new Vector3(0, 1, 0))));
-  }
-  var defaultRotation = object.getAttribute('rotation');
-  rotateTweenable = new Tweenable();
-  rotateTweenable.tween({
-    from: { phi: 0 },
-    to: { phi: 18 },
-    duration: 500,
-    easing: 'swifter',
-    step: function step(state) {
-      object.setAttribute('rotation', Quaternion.multiply(defaultRotation, Quaternion.angleAxis(state.phi * Math.PI / 180, new Vector3(0, 1, 0))));
-    },
-    finish: function finish() {
-      rotateTweenable = null;
-    }
-  });
-});
-
-$$('.slideshow').on('hide', function () {
-  object.setAttribute('rotation', initialRotation);
-});
-
-},{"grimoirejs":18,"grimoirejs-math":15,"shifty":23}],49:[function(require,module,exports){
+},{"shifty":23}],47:[function(require,module,exports){
 'use strict';
 
 var $$ = gr('#canvas');
@@ -110551,7 +110438,7 @@ $$('.webgl-end').on('hide', function (_, delta) {
   }
 });
 
-},{"./easing":34,"jquery":20}],50:[function(require,module,exports){
+},{"./easing":34,"jquery":20}],48:[function(require,module,exports){
 'use strict';
 
 var gr = require('grimoirejs').default;
@@ -110584,7 +110471,7 @@ var editors = require('./editor-settings')(editorConfig);
 editorRunable.goml('#world-container .middle .run', '.world', editors[1]);
 editorRunable.goml('#world-container .rright .run', '.world', editors[3]);
 
-var editorBuild = require('./editor-build')('#world-container', '.world', 3);
+var editorBuild = require('./editor-build')('#world-container', '.world', 1);
 var delta = 0;
 var apealPointFloatingBuild = 2;
 $$('.world').on('build', function (i) {
@@ -110626,40 +110513,43 @@ $$('.world').on('hide', function (i) {
   delta = 0;
 });
 
-},{"./easing":34,"./editor-build":35,"./editor-runable":36,"./editor-settings":37,"./sample/component.js.txt":53,"./sample/register.js.txt":56,"./sample/rotate-node.goml.txt":57,"./sample/rotate.goml.txt":58,"grimoirejs":18,"jquery":20}],51:[function(require,module,exports){
+},{"./easing":34,"./editor-build":35,"./editor-runable":36,"./editor-settings":37,"./sample/component.js.txt":51,"./sample/register.js.txt":55,"./sample/rotate-node.goml.txt":56,"./sample/rotate.goml.txt":57,"grimoirejs":18,"jquery":20}],49:[function(require,module,exports){
 module.exports = "<goml>\n  <scene>\n    <camera></camera>\n    <light rotation=\"0,45,45\" intensity=\"3\"></light>\n    <mesh id=\"cube\" diffuse=\"orange\" geometry=\"cube\" scale=\"0.5\" rotation=\"10,30,0\"></mesh>\n  </scene>\n</goml>\n";
 
-},{}],52:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 module.exports = "<html>\n<head>\n  <script type=\"text/javascript\" script=\"griomire.js\"></script>\n</head>\n<body>\n  <script type=\"text/goml\" src=\"index.goml\" id=\"canvas\"></script>\n</body>\n</html>\n";
 
-},{}],53:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = "gr.registerComponent(\"Rotate\", {\n  attributes: {\n    speed: {\n      default: 0.2,\n      converter: \"Number\",\n    },\n  },\n  $mount() {\n    this.transform = this.node.getComponent(\"Transform\");\n    this.current = 0;\n  },\n  $update() {\n    this.current += this.getAttribute(\"speed\");\n    this.transform.rotation = `y(${this.current})`;\n  }\n});\n";
 
-},{}],54:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 module.exports = "var mesh = gr(\"#canvas\")(\"mesh\");\n\nmesh.on(\"mouseenter\", function() {\n  mesh.setAttribute(\"diffuse\", \"blue\");\n});\n\nmesh.on(\"mouseleave\", function() {\n  mesh.setAttribute(\"diffuse\", \"orange\");\n});\n";
 
-},{}],55:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 module.exports = "var div = $(\"div\");\n\ndiv.on(\"mouseenter\", function() {\n  div.attr(\"color\", \"blue\");\n});\n\ndiv.on(\"mouseleave\", function() {\n  div.attr(\"color\", \"orange\");\n});\n";
 
-},{}],56:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
+module.exports = "// const mesh = gr(\"#canvas\")(\"#cube\");\n\n// mesh.on(\"mouseenter\", function() {\n//   mesh.setAttribute(\"scale\", \"1\");\n// });\n\n// mesh.on(\"mouseleave\", function() {\n//   mesh.setAttribute(\"scale\", \"0.5\");\n// });\n";
+
+},{}],55:[function(require,module,exports){
 module.exports = "gr.registerNode(\"kurukuru-mesh\", [\"Rotate\"], {}, \"mesh\");\n";
 
-},{}],57:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 module.exports = "<goml>\n  <scene>\n    <camera></camera>\n    <light rotation=\"0,45,45\" intensity=\"3\"></light>\n    <mesh position=\"0,0,0\" diffuse=\"orange\" geometry=\"cube\" scale=\"0.5\" rotation=\"10,30,0\">\n      <mesh.components>\n        <Rotate></Rotate>\n      </mesh.components>\n    </mesh>\n  </scene>\n</goml>\n";
 
-},{}],58:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 module.exports = "<goml>\n  <scene>\n    <camera></camera>\n    <light rotation=\"0,45,45\" intensity=\"3\"></light>\n    <mesh position=\"0,0,0\" diffuse=\"orange\" geometry=\"cube\" scale=\"0.5\" rotation=\"10,30,0\">\n    </mesh>\n  </scene>\n</goml>\n";
 
-},{}],59:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 module.exports = "var main = function(selector, width, height) {\n  const scene = new THREE.Scene();\n  const camera = new THREE.PerspectiveCamera(60, width / height);\n  camera.position.set(0, 0, 50);\n  const renderer = new THREE.WebGLRenderer({\n    alpha: true,\n    antialias: true,\n  });\n  renderer.setSize(width, height);\n  const light = new THREE.DirectionalLight(0xffffff);\n  light.position.set(1, 1, 1).normalize();\n  scene.add(light);\n  const obj = document.querySelector(selector);\n  obj.appendChild(renderer.domElement);\n  const geometry = new THREE.CubeGeometry(13, 13, 13);\n  const material = new THREE.MeshPhongMaterial({\n    color: \"orange\"\n  });\n  const mesh = new THREE.Mesh(geometry, material);\n  scene.add(mesh);\n  obj.addEventListener(\"mousemove\", onMouseMove);\n  const mouse = {\n    x: Number.MAX_VALUE,\n    y: Number.MAX_VALUE,\n  };\n\n  function onMouseMove(e) {\n    const rect = e.target.getBoundingClientRect();\n    mouse.x = e.clientX - rect.left;\n    mouse.y = e.clientY - rect.top;\n    mouse.x = (mouse.x / width) * 2 - 1;\n    mouse.y = -(mouse.y / height) * 2 + 1;\n  }\n  (function update() {\n    requestAnimationFrame(update);\n    const vector = new THREE.Vector3(mouse.x, mouse.y, 1);\n    vector.unproject(camera);\n    const ray = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());\n    const objs = ray.intersectObjects(scene.children);\n    if (objs.length > 0) {\n      material.color.set(\"blue\");\n    } else {\n      material.color.set(\"orange\");\n    }\n    mesh.rotation.set(\n      0,\n      mesh.rotation.y + 0.02,\n      mesh.rotation.z + 0.02\n    );\n    renderer.render(scene, camera);\n  })();\n};\n\ndocument.addEventListener(\"DOMContentLoaded\", main);\n";
 
-},{}],60:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 var Tweenable = require('shifty');
 Tweenable.setBezierFunction('swifter', 0.4, 0, 0, 1);
 
-},{"shifty":23}],61:[function(require,module,exports){
+},{"shifty":23}],60:[function(require,module,exports){
 'use strict';
 
 var THREE = require('three');
@@ -110713,22 +110603,22 @@ module.exports = function (selector, width, height) {
   })();
 };
 
-},{"three":24}],62:[function(require,module,exports){
+},{"three":24}],61:[function(require,module,exports){
 module.exports = "@Pass {\n  @Disable(BLEND)\n  @Disable(DEPTH_TEST)\n  FS_PREC(mediump,float)\n\n  varying vec2 vTexCoord;\n\n  #ifdef VS\n    attribute vec3 position;\n    attribute vec2 texCoord;\n    void main(){\n      gl_Position = vec4(position, 1.);\n      vTexCoord = texCoord;\n    }\n  #endif\n\n  #ifdef FS\n    uniform sampler2D current;\n    uniform sampler2D previous;\n    uniform float progress;\n\n    void main() {\n      vec2 iTexCoord = vec2(1., -1.) * vTexCoord;\n      if (progress < 0.5) {\n        gl_FragColor = vec4(texture2D(previous, iTexCoord).rgb * (1. - progress * 2.), 1.);\n      } else {\n        gl_FragColor = vec4(texture2D(current, iTexCoord).rgb * (progress * 2. - 1.), 1.);\n      }\n    }\n  #endif\n}\n";
 
-},{}],63:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 module.exports = "@Pass{\nFS_PREC(mediump,float)\n@ExposeMacro(int,test,TEST,1)\nvarying vec2 vUV;\n#ifdef VS\n  attribute vec3 position;\n\n  attribute vec2 texCoord;\n  uniform mat4 _matPVM;\n  void main(){\n    gl_Position = _matPVM * vec4(position,1);\n    vUV = texCoord;\n    vUV.y = 1. - vUV.y;\n  }\n#endif\n\n#ifdef FS\n@{default:\"./images/i1.jpg\"}\nuniform sampler2D previous;\n\n@{default:\"./images/i2.jpg\"}\nuniform sampler2D current;\n@{range:\"0,1\"}\nuniform float progress;\nuniform vec2 _viewportSize;\n\nhighp float random(vec2 co){highp float a=12.9898;highp float b=78.233;highp float c=43758.5453;highp float dt=dot(co.xy,vec2(a,b));highp float sn=mod(dt,3.14);return fract(sin(sn)*c);}\n\nfloat voronoi(in vec2 x){vec2 p=floor(x);vec2 f=fract(x);float res=8.0;for(float j=-1.;j<=1.;j++)for(float i=-1.;i<=1.;i++){vec2 b=vec2(i,j);vec2 r=b-f+random(p+b);float d=dot(r,r);res=min(res,d);}return sqrt(res);}\n\nvec2 displace(vec4 tex,vec2 texCoord,float dotDepth,float textureDepth,float strength){\n    float b=voronoi(.003*texCoord+2.0);\n    float g=voronoi(0.2*texCoord);\n    float r=voronoi(texCoord-1.0);\n    vec4 dt=tex*1.0;\n    vec4 dis=dt*dotDepth+1.0-tex*textureDepth;\n    dis.x=dis.x-1.0+textureDepth*dotDepth;\n    dis.y=dis.y-1.0+textureDepth*dotDepth;\n    dis.x*=strength;dis.y*=strength;\n    vec2 res_uv=texCoord;\n    res_uv.x=res_uv.x+dis.x-0.0;\n    res_uv.y=res_uv.y+dis.y;\n    return res_uv;\n}\n\nfloat ease1(float t){\n    return t==0.0||t==1.0?t:t<0.5?+0.5*pow(2.0,(20.0*t)-10.0):-0.5*pow(2.0,10.0-(t*20.0))+1.0;\n}\n\nfloat ease2(float t){\n    return t==1.0?t:1.0-pow(2.0,-10.0*t);\n}\n\nvoid main(){\n    vec2 p=vUV;\n    vec4 color1=texture2D(previous,p);\n    vec4 color2=texture2D(current,p);\n    vec2 disp=displace(color1,p,0.33,0.7,1.0-ease1(progress));\n    vec2 disp2=displace(color2,p,0.33,0.5,ease2(progress));\n    vec4 dColor1=texture2D(previous,disp);\n    vec4 dColor2=texture2D(current,disp2);\n    float val=ease1(progress);\n    vec3 gray=((dColor2 - dColor1) * progress + dColor1).rgb;\n    dColor2=vec4(gray,1.0);dColor2*=2.0;\n    color1=mix(color1,dColor2,smoothstep(0.0,0.5,progress));\n    color2=mix(color2,dColor1,smoothstep(1.0,0.5,progress));\n    gl_FragColor=mix(color1,color2,val);\n}\n#endif\n\n}\n";
 
-},{}],64:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 module.exports = "@Pass{\nFS_PREC(mediump,float)\n@ExposeMacro(int,test,TEST,1)\nvarying vec2 vUV;\n#ifdef VS\n  attribute vec3 position;\n\n  attribute vec2 texCoord;\n  uniform mat4 _matPVM;\n  void main(){\n    gl_Position = _matPVM * vec4(position,1);\n    vUV = texCoord;\n    vUV.y = 1. - vUV.y;\n  }\n#endif\n\n#ifdef FS\n\n@{default:\"./images/i1.jpg\"}\nuniform sampler2D current;\n\n@{default:\"./images/i2.jpg\"}\nuniform sampler2D previous;\n\n@{range:\"0,1\",default:0.5}\nuniform float progress;\n\nfloat rand(vec2 co){\n    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);\n}\n\nvec4 transition(vec4 c1,vec4 c2,float t,vec2 uv){\n  return (c2 - c1) * step(rand(uv),t) + c1;\n}\n\n void main() {\n   vec4 fc = texture2D(previous,vUV);\n   vec4 dc = texture2D(current,vUV);\n   gl_FragColor = transition(fc,dc,progress,vUV);\n   gl_FragColor.rgb *= float(TEST);\n }\n#endif\n}\n";
 
-},{}],65:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 module.exports = "@Pass {\n  @Disable(BLEND)\n  @Disable(DEPTH_TEST)\n  FS_PREC(mediump,float)\n\n  varying vec2 vTexCoord;\n\n  #ifdef VS\n    attribute vec3 position;\n    attribute vec2 texCoord;\n    void main(){\n      gl_Position = vec4(position, 1.);\n      vTexCoord = texCoord;\n    }\n  #endif\n\n  #ifdef FS\n    uniform sampler2D current;\n    uniform sampler2D previous;\n    uniform float progress;\n\n    void main() {\n      vec2 iTexCoord = vec2(1., -1.) * vTexCoord;\n      if (iTexCoord.x < 1. - progress) {\n        gl_FragColor = texture2D(previous, vec2(iTexCoord.x + progress, iTexCoord.y));\n      } else {\n        gl_FragColor = texture2D(current, vec2(iTexCoord.x + progress - 1., iTexCoord.y));\n      }\n    }\n  #endif\n}\n";
 
-},{}],66:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 module.exports = "@Pass {\n  @Disable(BLEND)\n  @Disable(DEPTH_TEST)\n  FS_PREC(mediump,float)\n\n  varying vec2 vTexCoord;\n\n  #ifdef VS\n    attribute vec3 position;\n    attribute vec2 texCoord;\n    void main(){\n      gl_Position = vec4(position, 1.);\n      vTexCoord = texCoord;\n    }\n  #endif\n\n  #ifdef FS\n    uniform sampler2D current;\n    uniform sampler2D previous;\n    uniform float progress;\n\n    void main() {\n      vec2 iTexCoord = vec2(1., -1.) * vTexCoord;\n      if (iTexCoord.x < 1. - progress) {\n        gl_FragColor = texture2D(previous, vec2(iTexCoord.x + progress, iTexCoord.y));\n      } else {\n        gl_FragColor = texture2D(current, iTexCoord);\n      }\n    }\n  #endif\n}\n";
 
-},{}],67:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 module.exports = "@Pass {\n  @Disable(BLEND)\n  @Disable(DEPTH_TEST)\n  FS_PREC(mediump,float)\n\n  varying vec2 vTexCoord;\n\n  #ifdef VS\n    attribute vec3 position;\n    attribute vec2 texCoord;\n    void main(){\n      gl_Position = vec4(position, 1.);\n      vTexCoord = texCoord;\n    }\n  #endif\n\n  #ifdef FS\n    uniform sampler2D current;\n    uniform sampler2D previous;\n    uniform float progress;\n\n    void main() {\n      vec2 iTexCoord = vec2(1., -1.) * vTexCoord;\n      if (iTexCoord.x < 1. - progress) {\n        gl_FragColor = texture2D(previous, iTexCoord);\n      } else {\n        gl_FragColor = texture2D(current, iTexCoord);\n      }\n    }\n  #endif\n}\n";
 
 },{}]},{},[1])
