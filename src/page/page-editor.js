@@ -9,11 +9,11 @@ const editorConfig = [
     mode: 'xml',
     text: require('./sample/change-color.goml.txt'),
   },
-  {
-    id: 'html-editor',
-    mode: 'html',
-    text: require('./sample/change-color.html.txt'),
-  },
+  // {
+  //   id: 'html-editor',
+  //   mode: 'html',
+  //   text: require('./sample/change-color.html.txt'),
+  // },
   {
     id: 'js-editor',
     mode: 'javascript',
@@ -27,24 +27,24 @@ $('#overlay').on('mouseleave', $$('renderer').single().getComponent('Renderer').
 $('#overlay').on('mouseenter', $$('renderer').single().getComponent('Renderer')._mouseEnterHandler);
 
 editorRunable.goml('#editor-container .left .run', '.editor', editors[0]);
-editorRunable.js('#editor-container .right .run', editors[2]);
+editorRunable.js('#editor-container .right .run', editors[1]);
 
-const editorBuild = require('./editor-build')('#editor-container', '.editor', 3);
+const editorBuild = require('./editor-build')('#editor-container', '.editor', 1);
 $$('.editor').on('build', (i) => {
-  switch (i) {
-    case 3:
-      $(`#editor-container .wrap`).stop(true, true).animate({
-        left: '0%',
-      });
-      break;
-    case 4:
-      $(`#editor-container .wrap`).stop(true, true).animate({
-        left: '-200%',
-      });
-      break;
-    default:
+  // switch (i) {
+    // case 2:
+    //   $(`#editor-container .wrap`).stop(true, true).animate({
+    //     left: '0%',
+    //   });
+    //   break;
+    // case 3:
+    //   $(`#editor-container .wrap`).stop(true, true).animate({
+    //     left: '-200%',
+    //   });
+    //   break;
+    // default:
       editorBuild.build(i);
-  }
+  // }
 });
 
 

@@ -50,7 +50,7 @@
     <mesh geometry="cube" scale="0"></mesh>
     <light rotation="0,45,45" intensity="3"></light>
   </page>
-  <page color="#f9efd5" class="editor" build="5" transition="push" duration="1" easing="swifter">
+  <page color="#f9efd5" class="editor" build="3" transition="push" duration="1" easing="swifter">
     <camera></camera>
     <light rotation="0,45,45" intensity="3"></light>
     <text text="WebGLのためのマークアップ" font="Bold 35pt Noto Sans CJK JP" size="0.5" textAlign="center" position="0.4,1.4,0" color="#381794"></text>

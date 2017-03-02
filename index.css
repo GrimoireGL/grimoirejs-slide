@@ -166,11 +166,8 @@ body {
 #editor-container .left {
   left: 2%;
 }
-#editor-container .middle {
-  left: 102%;
-}
 #editor-container .right {
-  left: 202%;
+  left: 102%;
 }
 #world-container {
   position: absolute;
