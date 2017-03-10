@@ -43,12 +43,22 @@ $$('.editor').on('build', (i) => {
     //   });
     //   break;
     // default:
-      editorBuild.build(i);
+  editorBuild.build(i + 1);
   // }
 });
 
+let t = null;
+
+$$('.editor').on('show', (i) => {
+  t = setTimeout(() => {
+    editorBuild.build(1);
+  }, 1000);
+});
 
 $$('.editor').on('hide', (i) => {
   $$('.editor mesh').setAttribute('diffuse', 'orange');
   editorBuild.reset();
+  if (t) {
+    clearTimeout(t);
+  }
 });

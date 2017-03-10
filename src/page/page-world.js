@@ -33,12 +33,12 @@ editorRunable.goml('#world-container .rright .run', '.world', editors[3]);
 
 const editorBuild = require('./editor-build')('#world-container', '.world', 1);
 let delta = 0;
-const apealPointFloatingBuild = 2;
+const apealPointFloatingBuild = 1;
 $$('.world').on('build', (i) => {
   if (i === apealPointFloatingBuild) {
     $('#cg-engineer-tukaiyasui-container').stop(true, true).css({
       transform: 'scale(2)',
-    })
+    });
     $({
       scale: 2,
     }).animate({
@@ -57,12 +57,24 @@ $$('.world').on('build', (i) => {
     delta = -1;
   } else if (i === apealPointFloatingBuild + 1) {
     $('#cg-engineer-tukaiyasui-container').fadeOut(500, swifter);
-    setTimeout(() => {
+    t = setTimeout(() => {
       editorBuild.build(i + delta);
     }, 200);
   } else {
-    editorBuild.build(i + delta)
+    if (t) {
+      clearTimeout(t);
+    }
+    editorBuild.build(i + delta);
   }
+});
+
+let t = null;
+
+$$('.world').on('show', (i) => {
+  t = setTimeout(() => {
+    editorBuild.build(1);
+  }, 1000);
+  delta += 1;
 });
 
 $$('.world').on('hide', (i) => {
@@ -70,4 +82,7 @@ $$('.world').on('hide', (i) => {
   editorBuild.reset();
   $('#cg-engineer-tukaiyasui-container').stop(true, false).removeAttr('style');
   delta = 0;
+  if (t) {
+    clearTimeout(t);
+  }
 });
